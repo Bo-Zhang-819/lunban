@@ -1,11 +1,15 @@
 <!--index.wxml-->
 <view class="container">
+  <view>当前随机列表中的成员：
+    <view class="member">{{memberList}}</view>
+  </view>
+    
     <view class="add-wrap">
-      <input class="addition" type="text" placeholder="Add random person" bindinput="inputContent" /><view class="add-confirme" bindtap="addConfirme">添加</view>
+      <input class="addition" type="text" placeholder="向列表中添加成员" bindinput="inputContent" /><view class="add-confirme" bindtap="addConfirme">添加</view>
     </view>
     
     <view class="box">
     </view>
     <view class="roll-start" bindtap="start" >抽一次</view><view class="roll-clean" bindtap="clean" >清空</view>
-    <view class="result">{{resultList[0]}}</view>
+    <view class="result">{{resultList}}</view>
 </view>

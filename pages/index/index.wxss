@@ -1,6 +1,13 @@
 .container{
   background-color: #0dbde9;
 }
+.member{
+  border-radius: 6px;
+  width:200px;
+  overflow: scroll;
+  background-color: rgb(199, 212, 166);
+  margin-bottom: 12px;
+}
 .box-wrap{
   width:350px;
   height: 500px;

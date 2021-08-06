@@ -9,29 +9,9 @@ Page({
     randomList:[],
     inputName: '',
     status: false,
-    value: '开始',
+    // value: '开始',
   },
-  // 事件处理函数
-  bindViewTap() {
-    
-  },
-  // roll:function(){
-  //   let status = this.data.status;
-  //   if(status === false){
-  //     // debugger;
-  //     this.start();
-  //     this.setData({
-  //       status: true,
-  //       value: '结束',
-  //     })
-  //   }else{
-  //     // this.stop();
-  //     this.setData({
-  //       status: false,
-  //       value: '开始',
-  //     })
-  //   }
-  // },
+  
   clean:function(){
     this.setData({
       randomList: [],
@@ -42,8 +22,7 @@ Page({
   },
   start:function(){
     let mlen = this.data.memberList.length;
-
-        let num = this.randomB(0,  mlen - 1);
+        let num = this.randomB(0,  mlen );
         if(this.data.randomList.length === 0 ){
           this.data.randomList.push(num);
         }else if(this.data.randomList.length ===3){
@@ -57,13 +36,13 @@ Page({
           }
           this.data.randomList.push(num);
         }
-        
-        this.data.resultList.push(this.data.memberList[num]);
-        console.log(this.data.resultList,this.data.randomList);
+        this.setData({
+          resultList: [...this.data.resultList,this.data.memberList[num]]
+
+        });
+
   },
-  // stop:function(){
-  //   clearInterval(timer);
-  // },
+ 
   randomB:function(a,b){
     let randomNum = Math.floor(Math.random() * (b - a) + a);
     return randomNum;
@@ -75,7 +54,10 @@ Page({
   },
   addConfirme:function(e){
     if(this.data.inputName){
-      this.data.memberList.push(this.data.inputName);
+      // this.data.memberList.push(this.data.inputName);
+      this.setData({
+        memberList: [...this.data.memberList,this.data.inputName]
+      });
       this.showok('添加成功！');
     }else{
       this.modalcnt("请输入正确的名字");
