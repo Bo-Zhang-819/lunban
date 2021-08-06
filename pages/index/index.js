@@ -4,45 +4,105 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    canIUseGetUserProfile: false,
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
+    memberList: ["卢穗杰","张萌","张博","徐宁蔚","卢冰","熊佳慧","贾孟达","杜天苗"],
+    resultList: [],
+    randomList:[],
+    inputName: '',
+    status: false,
+    value: '开始',
   },
   // 事件处理函数
   bindViewTap() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+    
   },
-  onLoad() {
-    if (wx.getUserProfile) {
-      this.setData({
-        canIUseGetUserProfile: true
-      })
-    }
-  },
-  getUserProfile(e) {
-    // 推荐使用wx.getUserProfile获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认，开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
-    wx.getUserProfile({
-      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-      success: (res) => {
-        console.log(res)
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
-        })
-      }
-    })
-  },
-  getUserInfo(e) {
-    // 不推荐使用getUserInfo获取用户信息，预计自2021年4月13日起，getUserInfo将不再弹出弹窗，并直接返回匿名的用户个人信息
-    console.log(e)
+  // roll:function(){
+  //   let status = this.data.status;
+  //   if(status === false){
+  //     // debugger;
+  //     this.start();
+  //     this.setData({
+  //       status: true,
+  //       value: '结束',
+  //     })
+  //   }else{
+  //     // this.stop();
+  //     this.setData({
+  //       status: false,
+  //       value: '开始',
+  //     })
+  //   }
+  // },
+  clean:function(){
     this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+      randomList: [],
+      resultList:[],
     })
-  }
+    // this.modalcnt("已清空！");
+    this.showok("清空成功！");
+  },
+  start:function(){
+    let mlen = this.data.memberList.length;
+
+        let num = this.randomB(0,  mlen - 1);
+        if(this.data.randomList.length === 0 ){
+          this.data.randomList.push(num);
+        }else if(this.data.randomList.length ===3){
+          this.modalcnt("已达到人数上限！");
+          return ;
+        }else if(this.data.randomList.length === 1 || this.data.randomList.length === 2){
+          for(let i = 0; i < this.data.randomList.length;i++){
+            if(num===this.data.randomList[i]){
+              return this.start();
+            }
+          }
+          this.data.randomList.push(num);
+        }
+        
+        this.data.resultList.push(this.data.memberList[num]);
+        console.log(this.data.resultList,this.data.randomList);
+  },
+  // stop:function(){
+  //   clearInterval(timer);
+  // },
+  randomB:function(a,b){
+    let randomNum = Math.floor(Math.random() * (b - a) + a);
+    return randomNum;
+  },
+  inputContent:function(e){
+     this.setData({
+        inputName: e.detail.value
+     });
+  },
+  addConfirme:function(e){
+    if(this.data.inputName){
+      this.data.memberList.push(this.data.inputName);
+      this.showok('添加成功！');
+    }else{
+      this.modalcnt("请输入正确的名字");
+    }
+
+  },
+  modalcnt:function(content){
+    wx.showModal({
+      title: '提示',
+      content: content,
+      success: function(res) {
+        if (res.confirm) { 
+        } else if (res.cancel) {
+        }
+    }
+  })
+},
+showok:function(e){
+  wx.showToast({
+    title: e,
+    icon:'success',
+    duration:2000
+  })
+  
+},
+  onLoad() {
+    
+  },
+  
 })

@@ -1,19 +1,57 @@
-/**index.wxss**/
-.userinfo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: #aaa;
+.container{
+  background-color: #0dbde9;
 }
-
-.userinfo-avatar {
-  overflow: hidden;
-  width: 128rpx;
-  height: 128rpx;
-  margin: 20rpx;
-  border-radius: 50%;
+.box-wrap{
+  width:350px;
+  height: 500px;
+  background-color: #fff;
+  border-radius: 5px;
 }
-
-.usermotto {
-  margin-top: 200px;
+.add-wrap{
+  margin-bottom:12px;
+  border-radius: 6px;
+}
+.addition{
+  background-color: #fff;
+  border:1px solid rgb(73, 73, 73);
+  float:left;
+  height:24px;
+  border-right:none;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+}
+.add-confirme{
+  display: inline-block;
+  width: 80px;
+  height:24px;
+  border: 1px solid rgb(73, 73, 73);
+  line-height: 24px;
+  font-size: 14px;
+  background-color: #f3f3f3;
+  text-align: center;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
+.roll-start{
+  background-color: #f3f3f3;
+  width:100px;
+  height:50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius:6px;
+  margin:12px 0;
+}
+.roll-clean{
+  background-color: #f3f3f3;
+  width:100px;
+  height:50px;
+  line-height: 50px;
+  text-align: center;
+  border-radius:6px;
+  margin:12px 0;
+}
+.result{
+  width:300px;
+  overflow: scroll;
+  background-color: #fff;
 }
